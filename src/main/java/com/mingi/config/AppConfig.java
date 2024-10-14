@@ -21,7 +21,7 @@ import com.mingi.entity.UserMessage;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan(basePackages = {"com.intheeast.service", "com.intheeast.dao"})
+@ComponentScan(basePackages = {"com.mingi.service", "com.mingi.dao"})
 @PropertySource("classpath:application.properties")
 public class AppConfig{
 	
@@ -40,7 +40,7 @@ public class AppConfig{
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());  // 데이터소스 설정
-        sessionFactory.setPackagesToScan("com.intheeast.entity");  // 엔티티 패키지 설정
+        sessionFactory.setPackagesToScan("com.mingi.entity");  // 엔티티 패키지 설정
         sessionFactory.setHibernateProperties(hibernateProperties());  // Hibernate 설정
         return sessionFactory;
     }

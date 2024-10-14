@@ -12,11 +12,18 @@ import org.springframework.web.multipart.support.StandardServletMultipartResolve
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.function.RouterFunction;
+import org.springframework.web.servlet.function.ServerResponse;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+import static org.springframework.web.servlet.function.RouterFunctions.route; // 정적 임포트
+
+import com.mingi.handlerfn.PersonFormHandler;
+import com.mingi.handlerfn.PersonHandler;
 
 @Configuration
 @EnableWebMvc  // 웹 관련 설정 활성화
-@ComponentScan(basePackages = "com.intheeast.controller")  // 컨트롤러 스캔
+@ComponentScan(basePackages = {"com.mingi.controller", "com.mingi.handlerfn"})  // 컨트롤러 스캔
 public class WebConfig implements WebMvcConfigurer {
 
     @Bean
@@ -52,4 +59,18 @@ public class WebConfig implements WebMvcConfigurer {
         converters.add(new ResourceHttpMessageConverter());        
 
     }
+    
+    @Bean
+    public RouterFunction<ServerResponse> personRoutes(PersonHandler handler) {
+    	return route().GET("/person/{id}", handler::getPerson)
+    			.GET("/people", handler::listPeople)
+    			.POST("/person", handler::createPerson)
+    			.build();
+    }
+    
+	@Bean
+    public RouterFunction<ServerResponse> routerFunction(PersonFormHandler personFormHandler) {
+    	return route().GET("/person-form", personFormHandler::renderPersonForm).build();
+    }
+    
 }
