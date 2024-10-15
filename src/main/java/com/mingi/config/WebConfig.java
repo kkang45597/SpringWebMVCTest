@@ -2,6 +2,7 @@ package com.mingi.config;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +11,7 @@ import org.springframework.http.converter.ResourceHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.function.RouterFunction;
@@ -20,10 +22,11 @@ import static org.springframework.web.servlet.function.RouterFunctions.route; //
 
 import com.mingi.handlerfn.PersonFormHandler;
 import com.mingi.handlerfn.PersonHandler;
+import com.mingi.interceptor.CustomInterceptor;
 
 @Configuration
 @EnableWebMvc  // 웹 관련 설정 활성화
-@ComponentScan(basePackages = {"com.mingi.controller", "com.mingi.handlerfn"})  // 컨트롤러 스캔
+@ComponentScan(basePackages = {"com.mingi.controller", "com.mingi.handlerfn", "com.mingi.interceptor"})  // 컨트롤러 스캔
 public class WebConfig implements WebMvcConfigurer {
 
     @Bean
@@ -71,6 +74,18 @@ public class WebConfig implements WebMvcConfigurer {
 	@Bean
     public RouterFunction<ServerResponse> routerFunction(PersonFormHandler personFormHandler) {
     	return route().GET("/person-form", personFormHandler::renderPersonForm).build();
+    }
+	
+	
+	// 인터셉터 테스트 ////////////////////////////////////////////////////////////////////////////////////////
+	@Autowired
+    private CustomInterceptor customInterceptor;
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        // initbinder 경로에 대해 인터셉터를 적용 (모두는 /**)
+        registry.addInterceptor(customInterceptor)
+                .addPathPatterns("/initbinder/*");
     }
     
 }

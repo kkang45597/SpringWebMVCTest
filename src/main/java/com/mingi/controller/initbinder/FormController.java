@@ -24,6 +24,7 @@ public class FormController {
 	
 	@RequestMapping("/submitForm")
 	public String submitForm(@RequestParam("date") Date date, Model model) {
+		System.out.println("submitForm 호출");
 		model.addAttribute("submittedDate", date);
 		return "initbinder/success";
 	}
