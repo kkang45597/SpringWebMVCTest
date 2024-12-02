@@ -1,6 +1,6 @@
 # SpringWebMVCTest
 ## 구현한 예제들
-[[<B>스프링, Spring Web MVC</B>]](https://docs.spring.io/spring-framework/reference/web/webmvc.html)
+[[<B>공식문서: Spring Web MVC</B>]](https://docs.spring.io/spring-framework/reference/web/webmvc.html)
 
 [[<B>기술 블로그: Web on Servlet Stack</B>]](https://blank001.tistory.com/category/Web%20on%20Servlet%20Stack)
 
