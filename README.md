@@ -7,14 +7,14 @@
 ### Section Summary
 * DispatcherServlet
 * Filters
-* <B>Annotated Controllers</B>
-* <B>Functional Endpoints</B>
+* <B>Annotated Controllers ★</B>
+* <B>Functional Endpoints ★</B>
 * MVC Config
 
 ## Annotated Controllers
 * Declaration
 * Mapping Requests
-* <B>Handler Methods</B>
+* <B>Handler Methods ★</B>
 * Model
 * @InitBinder
 * Validation
