@@ -36,11 +36,11 @@ public class AppConfig{
         return dataSource;
     }
 
-    @Bean
+	@Bean
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());  // 데이터소스 설정
-        sessionFactory.setPackagesToScan("com.mingi.entity");  // 엔티티 패키지 설정
+        sessionFactory.setPackagesToScan("com.intheeast.entity");  // 엔티티 패키지 설정
         sessionFactory.setHibernateProperties(hibernateProperties());  // Hibernate 설정
         return sessionFactory;
     }
@@ -115,5 +115,5 @@ public class AppConfig{
         message.setText("냉무");       // 기본 내용 설정
         return message;
     }
-    
 }
+    

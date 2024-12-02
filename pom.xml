@@ -9,7 +9,9 @@
       <maven.compiler.target>17</maven.compiler.target>
       <spring.version>6.1.6</spring.version>
       <aspectj.version>1.9.22.1</aspectj.version>
+      <!-- ###############################
       <hibernate.version>5.6.15.Final</hibernate.version>
+      -->
       <mysql.version>8.3.0</mysql.version>
       <h2db.version>2.2.224</h2db.version>
   </properties>
@@ -368,5 +370,6 @@
       <sourceDirectory>src/main/java</sourceDirectory>
       <testSourceDirectory>src/test/java</testSourceDirectory>
   </build>
-  
+
+
 </project>
